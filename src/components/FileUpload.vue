@@ -106,7 +106,7 @@ function downloadBlob(blob: Blob, filename: string): void {
   height: 205px;
 }
 
-.el-progress-circle {
+.el-progress--circle {
   display: flex;
 }
 

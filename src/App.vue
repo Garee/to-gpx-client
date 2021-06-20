@@ -58,9 +58,9 @@ body {
   height: 100%;
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #ffffff;
+  background-color: #fff;
   opacity: 1;
-  background-image: radial-gradient(#409eff 0.75px, #ffffff 0.75px);
+  background-image: radial-gradient(#409eff 0.75px, #fff 0.75px);
   background-size: 15px 15px;
 }
 

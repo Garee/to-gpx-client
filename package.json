@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "build-deploy": "npm run clean && vite build && npm run deploy",
     "deploy": "scp -r dist/* deploy@garyblackwood.co.uk:~/togpx.garyblackwood.co.uk",
+    "clean": "rm -rf dist",
     "format": "prettier --write **/*.{js,ts,vue,html}",
     "lint": "eslint src/**/*.{js,ts,vue} && stylelint src/**.{vue,css,scss}",
     "pre-commit": "lint-staged",

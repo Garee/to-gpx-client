@@ -120,7 +120,7 @@ function downloadBlob(blob: Blob, filename: string): void {
   }
 }
 
-@media only screen and (max-device-height: 375px) {
+@media only screen and (max-device-height: 425px) {
   .file-upload {
     height: 160px;
   }

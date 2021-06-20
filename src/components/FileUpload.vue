@@ -1,36 +1,38 @@
 <template>
-  <el-progress
-    :percentage="percentage"
-    :status="status"
-    type="circle"
-    v-show="isLoading"
-  ></el-progress>
+  <div class="file-upload">
+    <el-progress
+      :percentage="percentage"
+      :status="status"
+      type="circle"
+      v-show="isLoading"
+    ></el-progress>
 
-  <el-upload
-    v-show="!isLoading"
-    ref="upload"
-    drag
-    action="api/convert"
-    v-loading="isLoading"
-    :before-upload="handleBeforeUpload"
-    :on-progress="handleProgress"
-    :on-success="handleSuccess"
-    :on-error="handleError"
-    :file-list="fileList"
-    :show-file-list="false"
-    :accept="'tcx'"
-    :limit="1"
-    :name="'file'"
-    :auto-upload="true"
-  >
-    <i class="el-icon-upload"></i>
-    <div class="el-upload__text">
-      Drop file here or <em>click to upload</em>
-    </div>
-    <template #tip>
-      <div class="el-upload__tip">supports a tcx file up to 1MB</div>
-    </template>
-  </el-upload>
+    <el-upload
+      v-show="!isLoading"
+      ref="upload"
+      drag
+      action="api/convert"
+      v-loading="isLoading"
+      :before-upload="handleBeforeUpload"
+      :on-progress="handleProgress"
+      :on-success="handleSuccess"
+      :on-error="handleError"
+      :file-list="fileList"
+      :show-file-list="false"
+      :accept="'tcx'"
+      :limit="1"
+      :name="'file'"
+      :auto-upload="true"
+    >
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">
+        Drop file here or <em>click to upload</em>
+      </div>
+      <template #tip>
+        <div class="el-upload__tip">supports a tcx file up to 1MB</div>
+      </template>
+    </el-upload>
+  </div>
 </template>
 
 <script lang="ts">
@@ -101,5 +103,11 @@ function downloadBlob(blob: Blob, filename: string): void {
 <style>
 .el-upload__tip {
   text-align: center;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .el-upload-dragger {
+    width: 260px;
+  }
 }
 </style>

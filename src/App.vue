@@ -1,19 +1,21 @@
 <template>
   <el-row type="flex" justify="center">
-    <el-col :xs="20" :lg="12">
+    <el-col :xs="20" :sm="16" :md="12" :lg="10" :xl="6">
       <el-container>
-        <el-header><h1>GPX Conversion Tool</h1></el-header>
+        <el-header><h1>GPX Conversion Tool ⚡</h1> </el-header>
         <el-main>
           <FileUpload />
         </el-main>
-        <el-footer>
+        <el-footer height="100%">
           <el-divider></el-divider>
           <div class="links">
             <el-link href="https://garyblackwood.co.uk" target="_blank"
-              >By Gary Blackwood</el-link
+              >By Gary Blackwood 👋</el-link
             >
-            <el-link href="https://github.com/Garee" target="_blank"
-              >Source</el-link
+            <el-link
+              href="https://github.com/Garee/to-gpx-client"
+              target="_blank"
+              >Source 💻</el-link
             >
           </div>
         </el-footer>
@@ -44,8 +46,28 @@ export default defineComponent({
   font-display: "auto";
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+  opacity: 1;
+  background-image: radial-gradient(#409eff 0.75px, #ffffff 0.75px);
+  background-size: 15px 15px;
+}
+
+.el-container {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 30px;
 }
 
 .el-main {
@@ -53,6 +75,10 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.el-footer {
+  margin-bottom: 1rem;
 }
 
 .links {

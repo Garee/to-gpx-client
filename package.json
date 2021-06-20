@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "deploy": "scp -r dist/* deploy@garyblackwood.co.uk:~/togpx.garyblackwood.co.uk",
     "format": "prettier --write **/*.{js,ts,vue,html}",
     "lint": "eslint src/**/*.{js,ts,vue} && stylelint src/**.{vue,css,scss}",
     "pre-commit": "lint-staged",

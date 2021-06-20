@@ -60,7 +60,7 @@ export default defineComponent({
     },
     /* Called when some progress occurs */
     handleProgress(event: { percent: number }) {
-      this.percentage = event.percent;
+      this.percentage = Math.floor(event.percent);
     },
     /* Called when the file has converted successfully */
     handleSuccess(response: string) {

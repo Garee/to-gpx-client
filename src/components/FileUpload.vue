@@ -44,8 +44,8 @@ interface FileUploadData {
   fileList: File[] | [];
   isLoading: boolean;
   percentage: number;
+  uploading: number;
   status?: "success" | "exception";
-  uploading: { [file: string]: boolean };
 }
 
 export default defineComponent({
@@ -54,8 +54,8 @@ export default defineComponent({
     fileList: [],
     isLoading: false,
     percentage: 0,
+    uploading: 0,
     status: undefined,
-    uploading: {},
   }),
   methods: {
     handleBeforeUpload() {
@@ -63,21 +63,27 @@ export default defineComponent({
       this.status = undefined;
     },
     /* Called when some progress occurs */
-    handleProgress(event: { percent: number }, file: File) {
-      this.uploading[file.name] = true;
-      this.percentage = Math.min(Math.floor(event.percent), 99);
+    handleProgress(event: { percent: number }, _file: File, fileList: File[]) {
+      if (fileList.length === 1) {
+        this.percentage = Math.floor(event.percent);
+      }
     },
     /* Called when the file has converted successfully */
-    handleSuccess(response: string, file: File) {
-      delete this.uploading[file.name];
-      if (Object.keys(this.uploading).length === 0) {
+    handleSuccess(response: string, file: File, fileList: []) {
+      if (++this.uploading === fileList.length) {
         setTimeout(() => {
+          this.uploading = 0;
+          this.percentage = 0;
           this.isLoading = false;
         }, 2000);
 
         this.status = "success";
 
         this.$refs.upload.clearFiles();
+      }
+
+      if (fileList.length > 1 && this.uploading <= fileList.length) {
+        this.percentage = Math.floor((this.uploading / fileList.length) * 100);
       }
 
       const blob = new Blob([response], { type: "text/xml" });
@@ -89,7 +95,7 @@ export default defineComponent({
         this.isLoading = false;
       }, 2000);
 
-      this.uploading--;
+      ++this.uploading;
       this.status = "exception";
       this.$message.error(`${err}`);
     },

@@ -2,7 +2,9 @@
   <el-row type="flex" justify="center">
     <el-col :xs="20" :sm="16" :md="12" :lg="10" :xl="6">
       <el-container>
-        <el-header><h1>GPX Conversion Tool ⚡</h1> </el-header>
+        <el-header
+          ><h1>Convert TCX to GPX <span class="lightning">⚡</span></h1>
+        </el-header>
         <el-main>
           <FileUpload />
         </el-main>
@@ -63,7 +65,9 @@ body {
   background-image: radial-gradient(#409eff 0.75px, #fff 0.75px);
   background-size: 15px 15px;
 }
+</style>
 
+<style scoped>
 .el-container {
   background: white;
   border: 1px solid #d9d9d9;

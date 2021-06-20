@@ -20,16 +20,18 @@
       :file-list="fileList"
       :show-file-list="false"
       :accept="'tcx'"
-      :limit="1"
       :name="'file'"
       :auto-upload="true"
+      multiple
     >
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">
-        Drop file here or <em>click to upload</em>
+        Drop files here or <em>click to upload</em>
       </div>
       <template #tip>
-        <div class="el-upload__tip">supports a tcx file up to 1MB</div>
+        <div class="el-upload__tip">
+          <i class="el-icon-info"></i> supports .tcx files up to 1MB
+        </div>
       </template>
     </el-upload>
   </div>
@@ -43,6 +45,7 @@ interface FileUploadData {
   isLoading: boolean;
   percentage: number;
   status?: "success" | "exception";
+  uploading: { [file: string]: boolean };
 }
 
 export default defineComponent({
@@ -52,6 +55,7 @@ export default defineComponent({
     isLoading: false,
     percentage: 0,
     status: undefined,
+    uploading: {},
   }),
   methods: {
     handleBeforeUpload() {
@@ -59,21 +63,25 @@ export default defineComponent({
       this.status = undefined;
     },
     /* Called when some progress occurs */
-    handleProgress(event: { percent: number }) {
-      this.percentage = Math.floor(event.percent);
+    handleProgress(event: { percent: number }, file: File) {
+      this.uploading[file.name] = true;
+      this.percentage = Math.min(Math.floor(event.percent), 99);
     },
     /* Called when the file has converted successfully */
-    handleSuccess(response: string) {
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2000);
+    handleSuccess(response: string, file: File) {
+      delete this.uploading[file.name];
+      if (Object.keys(this.uploading).length === 0) {
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 2000);
 
-      this.status = "success";
+        this.status = "success";
+
+        this.$refs.upload.clearFiles();
+      }
 
       const blob = new Blob([response], { type: "text/xml" });
-      downloadBlob(blob, "result.gpx");
-
-      this.$refs.upload.clearFiles();
+      downloadBlob(blob, `${file.name}.gpx`);
     },
     /* Called when an error occurs during the conversion */
     handleError(err) {
@@ -81,6 +89,7 @@ export default defineComponent({
         this.isLoading = false;
       }, 2000);
 
+      this.uploading--;
       this.status = "exception";
       this.$message.error(`${err}`);
     },

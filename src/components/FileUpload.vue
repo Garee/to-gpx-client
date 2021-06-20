@@ -119,4 +119,14 @@ function downloadBlob(blob: Blob, filename: string): void {
     width: 260px;
   }
 }
+
+@media only screen and (max-device-height: 375px) {
+  .file-upload {
+    height: 160px;
+  }
+
+  .el-upload-dragger {
+    height: 140px;
+  }
+}
 </style>

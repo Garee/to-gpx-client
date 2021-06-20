@@ -28,9 +28,7 @@
       Drop file here or <em>click to upload</em>
     </div>
     <template #tip>
-      <div class="el-upload__tip">
-        supports a tcx file with a size less than 1MB
-      </div>
+      <div class="el-upload__tip">supports a tcx file up to 1MB</div>
     </template>
   </el-upload>
 </template>
@@ -60,7 +58,6 @@ export default defineComponent({
     },
     /* Called when some progress occurs */
     handleProgress(event: { percent: number }) {
-      console.debug(event);
       this.percentage = event.percent;
     },
     /* Called when the file has converted successfully */
@@ -78,10 +75,12 @@ export default defineComponent({
     },
     /* Called when an error occurs during the conversion */
     handleError(err) {
-      console.error(err);
-      this.isLoading = false;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000);
+
       this.status = "exception";
-      this.$message(err);
+      this.$message.error(`${err}`);
     },
   },
 });
@@ -98,3 +97,9 @@ function downloadBlob(blob: Blob, filename: string): void {
   a.parentNode?.removeChild(a);
 }
 </script>
+
+<style>
+.el-upload__tip {
+  text-align: center;
+}
+</style>

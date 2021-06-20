@@ -1,14 +1,21 @@
 <template>
-  <el-row :gutter="20" type="flex" justify="center">
-    <el-col :span="12">
+  <el-row type="flex" justify="center">
+    <el-col :xs="20" :lg="12">
       <el-container>
-        <el-header><h1>To GPX</h1></el-header>
+        <el-header><h1>GPX Conversion Tool</h1></el-header>
         <el-main>
           <FileUpload />
         </el-main>
         <el-footer>
           <el-divider></el-divider>
-          <span>By Gary Blackwood</span>
+          <div class="links">
+            <el-link href="https://garyblackwood.co.uk" target="_blank"
+              >By Gary Blackwood</el-link
+            >
+            <el-link href="https://github.com/Garee" target="_blank"
+              >Source</el-link
+            >
+          </div>
         </el-footer>
       </el-container>
     </el-col>
@@ -37,7 +44,7 @@ export default defineComponent({
   font-display: "auto";
 }
 
-#app {
+body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -45,5 +52,12 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>

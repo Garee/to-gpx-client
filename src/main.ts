@@ -6,6 +6,7 @@ import {
   ElFooter,
   ElHeader,
   ElIcon,
+  ElLink,
   ElLoading,
   ElMain,
   ElMessage,
@@ -24,6 +25,7 @@ app.use(ElFooter);
 app.use(ElHeader);
 app.use(ElIcon);
 app.use(ElUpload);
+app.use(ElLink);
 app.use(ElLoading);
 app.use(ElMain);
 app.use(ElMessage);

@@ -101,6 +101,15 @@ function downloadBlob(blob: Blob, filename: string): void {
 </script>
 
 <style>
+.file-upload {
+  display: flex;
+  height: 205px;
+}
+
+.el-progress-circle {
+  display: flex;
+}
+
 .el-upload__tip {
   text-align: center;
 }

@@ -1,6 +1,8 @@
-# Vue 3 + Typescript + Vite
+# to-gpx-client
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+This is the client code for the "To GPX" web application.
+
+The server code can be found at [Garee/to-gpx-server](https://github.com/Garee/to-gpx-server).
 
 ## Recommended IDE Setup
 

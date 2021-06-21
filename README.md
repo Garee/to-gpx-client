@@ -1,8 +1,26 @@
 # to-gpx-client
 
+<p align="center">
+    <img src="https://i.imgur.com/9uvTXeh.png" title="To GPX" />
+</p>
+
 This is the client code for the "To GPX" web application.
 
 The server code can be found at [Garee/to-gpx-server](https://github.com/Garee/to-gpx-server).
+
+## Quick Start
+
+Install the dependencies:
+
+`$ npm install`
+
+Run the development server:
+
+`$ npm run dev # open localhost:3000`
+
+Create and serve a production build:
+
+`$ npm run build && npm run serve`
 
 ## Recommended IDE Setup
 
